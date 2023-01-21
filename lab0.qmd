@@ -51,11 +51,25 @@ dino_data |>
   summarize(r = cor(x, y))
 ```
 
-While the correlation coefficient between x and y for the "dino" dataset is -0.0645, it is -0.0683 for the "circle" dataset.
+While the r value in the correlation coefficient between x and y for the "dino" dataset is -0.0645, it is -0.0683 for the "circle" dataset.
 
 ## Exercise 4
 
-(Add a labeled code chunk and narrative here. Insert code chunks using the "insert chunk" button (a green C with a +). Alternatively, use CMD + OPTION + I (Mac) or CTRL + ALT + I (Windows).)
+```{r}
+#| label: plot-star
+dino_data <- datasaurus_dozen |>
+  filter(dataset == "star")
+  ggplot(data = dino_data, mapping = aes(x = x, y = y)) + 
+  geom_point()
+```
+
+```{r}
+#| label: cor-star
+dino_data |>
+  summarize(r = cor(x, y))
+```
+
+While the r value in the correlation coefficient between x and y for the "dino" dataset is -0.0645, it is -0.063 for the "star" dataset.
 
 ## Exercise 5
 
