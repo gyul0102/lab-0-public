@@ -17,12 +17,15 @@ library(datasauRus)
 
 ## Exercise 1
 
-The data frame has 1846 rows and 3 columns. The 3 variables are dataset, x, and y\
+The data frame has 1846 rows and 3 columns. The 3 variables are dataset, x, and y.\
 
 ## Exercise 2
 
 ```{r}
 #| label: plot-dino
+#| fig-height: 5
+#| fig-width: 5
+
 dino_data <- datasaurus_dozen |>
   filter(dataset == "dino")
   ggplot(data = dino_data, mapping = aes(x = x, y = y)) + 
@@ -39,6 +42,8 @@ dino_data |>
 
 ```{r}
 #| label: plot-circle
+#| fig-height: 5
+#| fig-width: 5
 dino_data <- datasaurus_dozen |>
   filter(dataset == "circle")
   ggplot(data = dino_data, mapping = aes(x = x, y = y)) + 
@@ -57,6 +62,8 @@ While the r value in the correlation coefficient between x and y for the "dino" 
 
 ```{r}
 #| label: plot-star
+#| fig-height: 5
+#| fig-width: 5
 dino_data <- datasaurus_dozen |>
   filter(dataset == "star")
   ggplot(data = dino_data, mapping = aes(x = x, y = y)) + 
@@ -73,4 +80,21 @@ While the r value in the correlation coefficient between x and y for the "dino" 
 
 ## Exercise 5
 
-(Add a labeled code chunk and narrative here. Insert code chunks using the "insert chunk" button (a green C with a +). Alternatively, use CMD + OPTION + I (Mac) or CTRL + ALT + I (Windows).)
+```{r}
+#| label: plot-allDatasets
+#| fig-height: 10
+#| fig-width: 6
+ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
+  geom_point()+
+  facet_wrap(~ dataset, ncol = 3) +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| label: cor-allDatasets
+datasaurus_dozen |>
+  group_by(dataset) |>
+  summarize(r = cor(x, y)) 
+```
+
+Looking at the plots and the correlations between the x and y values within each of them, there are several figures of different colors but with the same y value. For the r-value, it is noteworthy to mention that while all values are negative, there is one similar value between slant_up and bullseye, while the rest vary.
