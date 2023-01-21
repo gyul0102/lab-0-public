@@ -21,8 +21,6 @@ The data frame has 1846 rows and 3 columns. The 3 variables are dataset, x, and 
 
 ## Exercise 2
 
-First, let's plot the data in the dino dataset (we will cover **ggplot2** in much more depth next week):
-
 ```{r}
 #| label: plot-dino
 dino_data <- datasaurus_dozen |>
@@ -30,8 +28,6 @@ dino_data <- datasaurus_dozen |>
   ggplot(data = dino_data, mapping = aes(x = x, y = y)) + 
   geom_point()
 ```
-
-Next calculate the correlation between `x` and `y` in this dataset.
 
 ```{r}
 #| label: cor-dino
@@ -41,23 +37,21 @@ dino_data |>
 
 ## Exercise 3
 
-(Add code and narrative here as needed. Note the code chunks below are labeled with `plot-circle` and `cor-circle` to provide spaces to place the code for plotting and calculating the correlation coefficient.)
-
-(When you have finished, delete these instructions.)
-
 ```{r}
 #| label: plot-circle
-# Your code should go here! This is a comment, which should be deleted.
+dino_data <- datasaurus_dozen |>
+  filter(dataset == "circle")
+  ggplot(data = dino_data, mapping = aes(x = x, y = y)) + 
+  geom_point()
 ```
-
-Some more narrative can go here.
 
 ```{r}
 #| label: cor-circle
-# Calculate the correlation here
+dino_data |>
+  summarize(r = cor(x, y))
 ```
 
-Conclude with some more narrative, if needed.
+While the correlation coefficient between x and y for the "dino" dataset is -0.0645, it is -0.0683 for the "circle" dataset.
 
 ## Exercise 4
 
